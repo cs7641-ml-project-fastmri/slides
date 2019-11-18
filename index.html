@@ -111,13 +111,14 @@ masked_kspace, mask = T.apply_mask(slice_kspace2, mask_func)
             <!-- add diagram -->
             <br>
           </section>
-	  <section>
-	    <p>!!TODO!! Add U-Net Diagram</p>
-	  </section>
-          <section>
+      	  <section>
+      	    <img data-src="ourImages/u-net.png">
+            <figcaption>U-Net Architecture</figcaption>
+      	  </section>
+          <!-- <section>
             <h2>Scope for improvement</h2>
             <p>!!TODO!! Fill this in</p>
-          </section>
+          </section> -->
         </section>
 
 
@@ -134,6 +135,10 @@ masked_kspace, mask = T.apply_mask(slice_kspace2, mask_func)
             <p>A GAN uses a pair of competing neural networks: a Generator and a Discriminator. </p>
             <p>The discriminator is trained to recognize whether or not a given image comes from the training dataset. The generator is trained to generate images that “fool” the discriminator</p>
             <p>GANs have shown widespread success in image generation and translation tasks.</p>
+          </section>
+          <section>
+            <img data-src="ourImages/gan_diagram.svg">
+            <figcaption>GAN Structure</figcaption>
           </section>
           <section>
             <h2>Pix2pix Overview</h2>
@@ -155,6 +160,46 @@ masked_kspace, mask = T.apply_mask(slice_kspace2, mask_func)
             <br>
           </section>
         </section>
+
+         <section>
+          <section>
+            <h2>Results and Visualisation</h2>
+          </section>
+          <section>
+            <h2>Visualization</h2>
+          </section>
+          <section>
+            <h2>Things that can’t be explained visually</h2>
+            <p>
+              There are some artifacts introduces, indicative of impending mode collapse. 
+            </p>
+            <p>
+              We change the learning rate and switched to PixelGAN for our discriminator.
+            </p>
+            <p>Much cleaner results.</p>
+          </section>
+          <section>
+            <h2>Caveat</h2>
+            <p>No existing loss metric captures the level of details required for MR reconstruction.</p>
+          </section>
+        </section>
+
+        <section>
+          <!-- <section>
+            <h2>Conclusion</h2>
+          </section> -->
+          <section>
+            <h2>Conclusion</h2>
+            <p>We reconstructed MRIs from undersampled data.</p>
+            <p>Expectedly, they have captured the shape and structure of knees well.</p>
+            <p>The contrast and coloring is not great and sometimes there are artifacts introduced.
+</p>
+          </section>
+          <section>
+            <h2>Future work</h2>
+          </section>
+        </section>
+
 
 <!--        <section>
           <section>
