@@ -4,7 +4,7 @@
   <head>
     <meta charset="utf-8">
 
-    <title>ML Project: FastMRI - Generating Fully Sampled Data from Undersampled Data</title>
+    <title>ML Project: FastMRI - Reconstructing High-Fidelity MRIs from Partial Data</title>
 
     <meta name="description" content="fastMRI">
     <meta name="author" content="Anant Joshi, Kanksha Zaveri, Mason Lilly, Sarmishta Velury, Shlok Gujar">
@@ -42,7 +42,7 @@
       <div class="slides">
         <section>
           <h1>FastMRI</h1>
-          <h3>Generating Fully Sampled Data from Undersampled Data</h3>
+          <h3>Reconstructing High-Fidelity MRIs from Partial Data</h3>
           <p>
             <small>Team 16: Anant Joshi, Kanksha Zaveri, Mason Lilly, Sarmishta Velury, Shlok Gujar</small>
           </p>
@@ -50,15 +50,15 @@
 
         <section>
           <section>
-            <h2>Problem Definition</h2>
+            <h2>Project Summary</h2>
             <p>
-              Given an undersampled MRI scan, can we use a GAN to reconstruct a full MRI? 
+              Given an undersampled MRI scan, can we use a GAN to reconstruct the missing information? 
             </p>
           </section>
           <section>
             <!-- <h2>Project Summary</h2> -->
             <p>
-              We have used pix2pix - a semisupervised learning approach - to reconstruct undersampled MRI data.  
+              We used pix2pix - a semisupervised learning approach - to reconstruct undersampled MRI data.  
             </p>
           </section>
         </section>
@@ -71,6 +71,7 @@
           <p>
             MRIs are extremely useful, but they require copious sensor data and take a long time to perform. This makes them expensive and hard on patients. 
           </p>
+          <p>!!TODO!! Add an MRI image here</p>
         </section>
           <section>
             <h2>Capture less data = Faster, cheaper MRI</h2>
@@ -85,11 +86,11 @@
         <section>
           <section>
             <h2>The FastMRI dataset</h2>
-            <p>The FastMRI dataset provided by NYU Langone allows researchers to study this problem. It is an anonymised paired dataset consisting of raw k-space data from more than 1500 fully sampled and reconstructed knee MRI images. (In this case, of knees)</p>
+            <p>The FastMRI dataset provided by NYU Langone allows researchers to study this problem. It is an anonymised paired dataset consisting of k-space data (raw MRI output) and full decoded images from more than 1500 MRI images of knees.</p>
           </section>
           <section>
-            <h2>How they simulate undersampled data</h2>
-            <p>A mask is created and applied to the k-space.</p>
+            <h2>Undersampling</h2>
+            <p>The FastMRI authors generate a mask to apply to k-spaces to simulate an undersampled MRI scan.</p>
             <pre><code class="hljs" data-trim contenteditable>
 
 from common.subsample import MaskFunc
@@ -104,14 +105,18 @@ masked_kspace, mask = T.apply_mask(slice_kspace2, mask_func)
         <section>
           <section>
             <h2>Baseline Models</h2>
+	    <p>FastMRI provideds two baseline models for comparison</p>
             <p>Classical Method: uses expectation-maximization to minimize the loss of a reconstruction function</p>
-            <p>U-Net: is a network that consists of paired convolution and deconvolution layers, with skip connections in between.</p>
+            <p>Deep Learning Method: Uses a U-Net, a network consisting of several convolutions followed by deconvolutions, with "skip" connections across the middle layers.</p>
             <!-- add diagram -->
             <br>
           </section>
+	  <section>
+	    <p>!!TODO!! Add U-Net Diagram</p>
+	  </section>
           <section>
             <h2>Scope for improvement</h2>
-            <p></p>
+            <p>!!TODO!! Fill this in</p>
           </section>
         </section>
 
@@ -119,28 +124,28 @@ masked_kspace, mask = T.apply_mask(slice_kspace2, mask_func)
         <!-- Example of nested vertical slides -->
         <section>
           <section>
-            <h2>pix2pix</h2>
+            <h2>Our Approach</h2>
             <!-- <h3></h3> -->
-            <p>our approach</p>
+            <p>pix2pix - a Conditional GAN for image translation</p>
             <br>
           </section>
           <section>
-            <h2>A Brief overview of GANs</h2>
+            <h2>GANs - Brief Overview</h2>
             <p>A GAN uses a pair of competing neural networks: a Generator and a Discriminator. </p>
-            <p>The discriminator is trained to recognize whether a given image comes from the training dataset or not. The generator is trained to generate images that “fool” the discriminator</p>
+            <p>The discriminator is trained to recognize whether or not a given image comes from the training dataset. The generator is trained to generate images that “fool” the discriminator</p>
+            <p>GANs have shown widespread success in image generation and translation tasks.</p>
           </section>
           <section>
-            <h2>Why GAN</h2>
-            <p>Generative Adversarial Networks have shown widespread success in image generation and translation tasks.</p>
+            <h2>Pix2pix Overview</h2>
+            <p>
+              Pix2pix is an extension of a traditional GAN called a “Conditional GAN”, in which the generator is fed an input image in addition to noise. Whereas a traditional GAN merely generates images in a target domain, this allows a conditional GAN to translate between two domains (in our case, from k-space to MRI images).
+            </p>
+            <p>
+              In addition to training the generator to fool the discriminator, pix2pix also adds an extra loss term that compares generated images to their “intended” translations. This allows pix2pix to be more stable than traditional GANs, which are notoriously difficult to train. 
+            </p>
           </section>
           <section>
-            <h2>A brief overview of pix2pix</h2>
-            <p>
-              Pix2pix is an extension of a traditional GAN called a “Conditional GAN”, in which the generator is fed an input image in addition to noise. While a traditional GAN merely generates images in a target domain, this allows a conditional GAN to translate between two domains (in our case, from k-space to MRI images).
-            </p>
-            <p>
-              In addition to training the generator to fool the discriminator, Pix2pix also adds an extra loss term that compares generated images to their “intended” translations. This allows pix2pix to be more stable than traditional GANs, which are notoriously difficult to train. 
-            </p>
+            <p>!!TODO!! add pix2pix diagram</p>
           </section>
           <section>
             <h2>Why Pix2Pix</h2>
@@ -150,7 +155,7 @@ masked_kspace, mask = T.apply_mask(slice_kspace2, mask_func)
           </section>
         </section>
 
-        <section>
+<!--        <section>
           <section>
             <h2>Vertical Slides</h2>
             <p>Slides can be nested inside of each other.</p>
@@ -280,7 +285,9 @@ masked_kspace, mask = T.apply_mask(slice_kspace2, mask_func)
           <h2>Themes</h2>
           <p>
             reveal.js comes with a few themes built in: <br>
+-->
             <!-- Hacks to swap themes after the page has loaded. Not flexible and only intended for the reveal.js demo deck. -->
+<!--
             <a href="#" onclick="document.getElementById('theme').setAttribute('href','css/theme/black.css'); return false;">Black (default)</a> -
             <a href="#" onclick="document.getElementById('theme').setAttribute('href','css/theme/white.css'); return false;">White</a> -
             <a href="#" onclick="document.getElementById('theme').setAttribute('href','css/theme/league.css'); return false;">League</a> -
@@ -491,7 +498,7 @@ Reveal.addEventListener( 'customevent', function() {
             - <a href="http://slides.com">Try the online editor</a> <br>
             - <a href="https://github.com/hakimel/reveal.js">Source code &amp; documentation</a>
           </p>
-        </section>
+        </section>-->
 
       </div>
 
