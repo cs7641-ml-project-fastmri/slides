@@ -71,8 +71,12 @@
           <p>
             MRIs are extremely useful, but they require copious sensor data and take a long time to perform. This makes them expensive and hard on patients. 
           </p>
-          <p>!!TODO!! Add an MRI image here</p>
-        </section>
+          
+          </section>
+          <section>
+            <img width="600" height="600" data-src="ourImages/mri.jpg">
+            <figcaption>MRI Image</figcaption>
+          </section>
           <section>
             <h2>Capture less data = Faster, cheaper MRI</h2>
             <p>It is possible to perform a faster scan by capturing less data, but this causes traditional MRI reconstruction techniques to produce blurry images.</p>
@@ -150,7 +154,10 @@ masked_kspace, mask = T.apply_mask(slice_kspace2, mask_func)
             </p>
           </section>
           <section>
-            <p>!!TODO!! add pix2pix diagram</p>
+            <section>
+            <img data-src="ourImages/pix2pix.png">
+            <figcaption>Pix2Pix</figcaption>
+          </section>
           </section>
           <section>
             <h2>Why Pix2Pix</h2>
@@ -164,8 +171,62 @@ masked_kspace, mask = T.apply_mask(slice_kspace2, mask_func)
           <section>
             <h2>Results and Visualisation</h2>
           </section>
-          <section>
+          <!-- <section>
             <h2>Visualization</h2>
+          </section> -->
+
+
+          <section>
+            <img width="600" height="600" data-src="ourImages/img_results/epoch9.png">
+            <figcaption>Epoch 9</figcaption>
+          </section>
+          <section>
+            <img width="600" height="600" data-src="ourImages/img_results/epoch1.png">
+            <figcaption>Epoch 1</figcaption>
+          </section>
+          <section>
+            <img width="600" height="600" data-src="ourImages/img_results/subsample.png">
+            <figcaption>Subsampled Images</figcaption>
+          </section>
+          <section>
+            <img width="600" height="600" data-src="ourImages/img_results/target.png">
+            <figcaption>Target Images</figcaption>
+          </section>
+          <section>
+            <img style='background-color: white;' data-src="ourImages/img_results/D_fake.svg">
+            <figcaption>D_fake</figcaption>
+            <img style='background-color: white;' data-src="ourImages/img_results/D_real.svg">
+            <figcaption>D_real</figcaption>
+          </section>
+          <section>
+            <img style='background-color: white;' data-src="ourImages/img_results/G_loss.svg">
+            <figcaption>G_loss</figcaption>
+            <img style='background-color: white;' data-src="ourImages/img_results/G_L1.svg">
+            <figcaption>G_L1</figcaption>
+          </section>
+          <section>
+            <img style='background-color: white;' data-src="ourImages/img_results/D_fake_SSIM.svg">
+            <figcaption>D_fake_SSIM</figcaption>
+            <img style='background-color: white;' data-src="ourImages/img_results/D_real_SSIM.svg">
+            <figcaption>D_real_SSIM</figcaption>
+          </section>
+          <section>
+            <img style='background-color: white;' data-src="ourImages/img_results/G_loss_SSIM.svg">
+            <figcaption>G_loss_SSIM</figcaption>
+            <!-- <img style='background-color: white;' data-src="ourImages/img_results/G_L1.svg">
+            <figcaption>G_L1</figcaption> -->
+          </section>
+          <section>
+            <img style='background-color: white;' data-src="ourImages/img_results/D_fake.svg">
+            <figcaption>D_fake_stable_vs_unstable</figcaption>
+            <img style='background-color: white;' data-src="ourImages/img_results/D_real.svg">
+            <figcaption>D_real_stable_vs_unstable</figcaption>
+          </section>
+          <section>
+            <img style='background-color: white;' data-src="ourImages/img_results/G_loss.svg">
+            <figcaption>G_loss_stable_vs_unstable</figcaption>
+            <img style='background-color: white;' data-src="ourImages/img_results/G_L1.svg">
+            <figcaption>G_L1_stable_vs_unstable</figcaption>
           </section>
           <section>
             <h2>Things that can’t be explained visually</h2>
@@ -189,6 +250,10 @@ masked_kspace, mask = T.apply_mask(slice_kspace2, mask_func)
           </section> -->
           <section>
             <h2>Conclusion</h2>
+            <p>Subsampled MRI reconstruction is a difficult problem, and is an area of active research. We show improved performance compared to the classical baseline, that approaches the fully-trained baseline in just 10 epochs. We believe that with additional resources, we can train this to state-of-the-art performance in 200 epochs.</p>
+          </section>
+          <section>
+            <h2>Achievements</h2>
             <p>We reconstructed MRIs from undersampled data.</p>
             <p>Expectedly, they have captured the shape and structure of knees well.</p>
             <p>The contrast and coloring is not great and sometimes there are artifacts introduced.
@@ -196,6 +261,8 @@ masked_kspace, mask = T.apply_mask(slice_kspace2, mask_func)
           </section>
           <section>
             <h2>Future work</h2>
+            <p>In the future, we would train the model to completion (200 epochs). We would also like to try other loss metrics.</p>
+
           </section>
         </section>
 
