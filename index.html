@@ -169,18 +169,20 @@ masked_kspace, mask = T.apply_mask(slice_kspace2, mask_func)
             <h2>Visualization</h2>
           </section>
           <section>
-            <h2>Things that can’t be explained visually</h2>
+            <h2>Discussion</h2>
             <p>
-              There are some artifacts introduces, indicative of impending mode collapse. 
+              Some artifacts are visible, indicative of impending mode collapse. 
             </p>
             <p>
-              We change the learning rate and switched to PixelGAN for our discriminator.
+              We got our best results using a low learning rate and using PixelGAN for our discriminator (instead of PatchGAN).
             </p>
-            <p>Much cleaner results.</p>
+            <p>Though the key structures are visible, the contrast and coloring are not great.</p>
+            <p>With the computers available to us, we only trained for 10 epochs - most GANs train for far longer.</p>
           </section>
           <section>
             <h2>Caveat</h2>
-            <p>No existing loss metric captures the level of details required for MR reconstruction.</p>
+            <p>So far, no existing loss metric captures the level of detail required for medical-garde MRI reconstruction.</p>
+            <p>While our method looks promising, it may not be real-world-ready until better metrics are defined</p>
           </section>
         </section>
 
@@ -191,9 +193,8 @@ masked_kspace, mask = T.apply_mask(slice_kspace2, mask_func)
           <section>
             <h2>Conclusion</h2>
             <p>We reconstructed MRIs from undersampled data.</p>
-            <p>Expectedly, they have captured the shape and structure of knees well.</p>
-            <p>The contrast and coloring is not great and sometimes there are artifacts introduced.
-</p>
+            <p>Our images captured the shape and structure of knees well.</p>
+            <p>The images are imperfect, but could improve with more training.</p>
           </section>
           <section>
             <h2>Future work</h2>
