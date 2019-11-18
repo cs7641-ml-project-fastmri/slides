@@ -141,7 +141,7 @@ masked_kspace, mask = T.apply_mask(slice_kspace2, mask_func)
             <p>GANs have shown widespread success in image generation and translation tasks.</p>
           </section>
           <section>
-            <img data-src="ourImages/gan_diagram.svg">
+            <img style='background-color: white;' data-src="ourImages/gan_diagram.svg">
             <figcaption>GAN Structure</figcaption>
           </section>
           <section>
@@ -155,14 +155,15 @@ masked_kspace, mask = T.apply_mask(slice_kspace2, mask_func)
           </section>
           <section>
             <section>
-            <img data-src="ourImages/pix2pix.png">
+            <img style='background-color: white;' data-src="ourImages/pix2pix.png">
             <figcaption>Pix2Pix</figcaption>
           </section>
           </section>
           <section>
             <h2>Why Pix2Pix</h2>
             <p>Pix2pix is particularly good at image to image translation when you have paired data.</p>
-            <p>Other super resolution models are very complex and infeasible computation-wise while pix2pix allows us to run with the limited resources we had.</p>
+	    <p>While most GANs are good at superresolution tasks, other varieties are less stable.</p>
+            <p>They are also more computationally intensive. Pix2pix was more feasible with the machines we had available.</p>
             <br>
           </section>
         </section>
@@ -171,10 +172,42 @@ masked_kspace, mask = T.apply_mask(slice_kspace2, mask_func)
           <section>
             <h2>Results and Visualisation</h2>
           </section>
-          <!-- <section>
-            <h2>Visualization</h2>
-          </section> -->
 
+      	  <section>
+            <h2>Quantitative Results</h2>
+            <table>
+            <thead>
+            <tr>
+                <th>Metric</th>
+                <th>Classical Baseline</th>
+                <th>U-Net Baseline</th>
+                <th>Ours (10 epochs)</th>
+            </tr>
+            </thead>
+            <tbody>
+                <tr>
+                <td>NMSE</td>
+                <td>0.0479</td>
+                <td>0.0154</td>
+                <td>0.0263</td>
+                </tr>
+                <tr>
+                <td>SSIM</td>
+                <td>0.0588</td>
+                <td>0.0636</td>
+                <td>0.0602</td>
+                </tr>
+            </tbody>
+            </table>
+            <small>
+              <p>*NMSE: Normalized Mean Square Error</p>
+              <p>*SSIM: Structural Similarity Index</p>
+            </small>
+          </section>
+
+          <section>
+            <h2>Visualisation</h2>
+          </section>
 
           <section>
             <img width="600" height="600" data-src="ourImages/img_results/epoch9.png">
@@ -229,18 +262,20 @@ masked_kspace, mask = T.apply_mask(slice_kspace2, mask_func)
             <figcaption>G_L1_stable_vs_unstable</figcaption>
           </section>
           <section>
-            <h2>Things that can’t be explained visually</h2>
+            <h2>Discussion</h2>
             <p>
-              There are some artifacts introduces, indicative of impending mode collapse. 
+              Some artifacts are visible, indicative of impending mode collapse. 
             </p>
             <p>
-              We change the learning rate and switched to PixelGAN for our discriminator.
+              We got our best results using a low learning rate and using PixelGAN for our discriminator (instead of PatchGAN).
             </p>
-            <p>Much cleaner results.</p>
+            <p>Though the key structures are visible, the contrast and coloring are not great.</p>
+            <p>With the computers available to us, we only trained for 10 epochs - most GANs train for far longer.</p>
           </section>
           <section>
             <h2>Caveat</h2>
-            <p>No existing loss metric captures the level of details required for MR reconstruction.</p>
+            <p>So far, no existing loss metric captures the level of detail required for medical-garde MRI reconstruction.</p>
+            <p>While our method looks promising, it may not be real-world-ready until better metrics are defined</p>
           </section>
         </section>
 
@@ -255,14 +290,12 @@ masked_kspace, mask = T.apply_mask(slice_kspace2, mask_func)
           <section>
             <h2>Achievements</h2>
             <p>We reconstructed MRIs from undersampled data.</p>
-            <p>Expectedly, they have captured the shape and structure of knees well.</p>
-            <p>The contrast and coloring is not great and sometimes there are artifacts introduced.
-</p>
+            <p>Our images captured the shape and structure of knees well.</p>
+            <p>The images are imperfect, but could improve with more training.</p>
           </section>
           <section>
             <h2>Future work</h2>
             <p>In the future, we would train the model to completion (200 epochs). We would also like to try other loss metrics.</p>
-
           </section>
         </section>
 
